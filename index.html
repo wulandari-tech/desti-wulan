@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Untuk Desti Wulandari</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #00bcd4;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        #start-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00bcd4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #00bcd4;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .futuristic-line {
+            border-bottom: 2px dashed #00bcd4;
+            margin: 20px 0;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scrollable-poem {
+            max-height: 300px; /* Sesuaikan */
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #00bcd4;
+            border-radius: 5px;
+            text-transform: lowercase; /* Huruf kecil semua */
+        }
+
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.8; }
+        }
+
+        #next-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00bcd4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="star-field"></div>
+
+    <div class="container">
+        <h1>Untuk Desti Wulandari</h1>
+
+        <p id="prompt-text">Sebelum melanjutkan, mari kita mulai dengan sebuah pertanyaan...</p>
+
+        <button id="start-button">Mulai</button>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div id="poem-container" style="display: none;">
+            <div class="futuristic-line"></div>
+            <div class="scrollable-poem" id="poem-content">
+                <!-- Puisi akan dimuat di sini -->
+            </div>
+            <button id="next-button">Selanjutnya</button>
+            <div class="futuristic-line"></div>
+        </div>
+    </div>
+
+    <script>
+        function createStars() {
+            const starField = document.querySelector('.star-field');
+            const numStars = 100;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        const poems = [
+            `
+            pagi ini, nada bicaramu meninggi,
+            'kok gitu sih?' katamu,
+            aku terdiam, mencoba mengerti,
+            ternyata, salah paham lagi.
+            akhirnya, kuucap, maafkan.
+            `,
+            `
+            siang hari, pesan terkirim tak sampai,
+            'kamu kemana?' tanyamu, cemas tak terperi,
+            aku jelaskan, sinyal buruk jadi alasan,
+            kau balas, 'lain kali kasih kabar, ya.'
+            lalu, kuucap, maafkan.
+            `,
+            `
+            malam tiba, waktu tidur tiba,
+            perbedaan pendapat, membuat kita berdebat,
+            suara meninggi, hati terluka,
+            kau pergi, aku menyesal.
+            akhirnya, kuucap, maafkan.
+            `,
+            `
+            desti,
+            terima kasih untuk setiap hari,
+            baik suka maupun duka,
+            meski sering ribut, ku tahu,
+            kau adalah segalanya bagiku.
+            dan untuk semua itu, kuucap, maafkan.
+            `
+        ];
+
+        let currentPoemIndex = 0;
+        const poemContent = document.getElementById('poem-content');
+        const nextButton = document.getElementById('next-button');
+        const startButton = document.getElementById('start-button');
+        const promptText = document.getElementById('prompt-text');
+
+        function loadPoem() {
+            poemContent.innerHTML = poems[currentPoemIndex].trim().split('\n').map(line => `<p>${line.trim()}</p>`).join('');
+            if (currentPoemIndex < poems.length - 1) {
+                nextButton.style.display = 'block';
+            } else {
+                nextButton.style.display = 'none';
+            }
+        }
+
+        document.getElementById('start-button').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Pertanyaan...',
+                text: 'Apakah kamu siap menerima cintaku, Desti?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Aku Siap!',
+                cancelButtonText: 'Tidak, Masih Ragu'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const progressBar = document.querySelector('.progress-bar');
+                    const progressContainer = document.querySelector('.progress-container');
+                    const poemContainer = document.getElementById('poem-container');
+
+                    startButton.style.display = 'none';
+                    promptText.style.display = 'none';
+
+                    progressContainer.style.display = 'block';
+
+                    let width = 0;
+                    const interval = setInterval(() => {
+                        width++;
+                        progressBar.style.width = width + '%';
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            progressContainer.style.display = 'none';
+                            poemContainer.style.display = 'block';
+                            document.body.style.overflow = 'auto';
+                            loadPoem();
+                        }
+                    }, 20);
+                }
+            });
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentPoemIndex++;
+            loadPoem();
+        });
+    </script>
+</body>
+</html>
